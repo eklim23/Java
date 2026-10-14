@@ -1,1 +1,4 @@
-this is for a CJU java Class
+# Java 2026
+2026년 2학기 자바 프로그래밍 3분반 저장소
+
+테스트 중 입니다.
