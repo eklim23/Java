@@ -5,11 +5,10 @@ public class Customer {
 
 
 
-    public Customer(String name, int money, boolean hasCoffee)
-    {
-        name = "";
-        money = 0;
-        hasCoffee = false;
+    public Customer(String customerName, int initialMoney, boolean alreadyHasCoffee) {
+        name = customerName;
+        money = initialMoney;
+        hasCoffee = alreadyHasCoffee;
     }
 
     public Customer(int money)
@@ -45,7 +44,7 @@ public class Customer {
 
     public void order(Barista barista, String menuName)
     {
-        System.out.println(name  + menuName + "를 한 잔 주세요.");
+        System.out.println( "[" + name + "] "+ menuName + "를 한 잔 주세요.");
         int price = barista.getCoffeePrice();
         System.out.println("[바리스타] 커피 가격은 " + price + "원 입니다.");
 
@@ -55,12 +54,19 @@ public class Customer {
 
         System.out.println( name + price +"원을 지불했습니다.");
         String coffee = barista.takeOrder(menuName, price);
+
+        if (coffee == null){
+            money += price;
+            System.out.println("[" + name + "] " + price+"원을 돌려받았습니다");
+            return;
+        }
+
         takeCoffee(coffee);
     }
 
     public void takeCoffee(String coffee)
     {
         hasCoffee = true;
-        System.out.println( name + coffee + "를 받았습니다");
+        System.out.println("[" + name + "] "+ coffee + "를 받았습니다");
     }
 }
